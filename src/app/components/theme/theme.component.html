@@ -1,0 +1,18 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Change Theme Menu">
+  <mat-icon>format_color_fill</mat-icon>
+</button>
+
+<mat-menu #menu="matMenu">
+  <button *ngFor="let option of options" mat-menu-item (click)="changeTheme(option.value)">
+    <mat-icon [ngStyle]="{'color': option.backgroundColor,
+    'border':'1px solid black',
+    'border-radius':'50%'}">circle</mat-icon>
+    <mat-icon [ngStyle]="{'color': option.buttonColor,
+    'border':'1px solid black',
+    'border-radius':'50%'}">circle</mat-icon>
+    <mat-icon [ngStyle]="{'color': option.headingColor,
+    'border':'1px solid black',
+    'border-radius':'50%'}">circle</mat-icon>
+    <span>{{ option.label }}</span>
+  </button>
+</mat-menu>

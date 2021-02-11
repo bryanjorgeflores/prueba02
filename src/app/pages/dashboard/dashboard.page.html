@@ -1,0 +1,50 @@
+<ion-header>
+
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button (click)="toggleMenu()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="ion-text-center" [style.font-family]="fontFamily">Inicio</span>
+      <span class="spacer"></span>
+      <app-theme [options]="options$ | async" (themeChange)="themeChangeHandler($event)">
+      </app-theme>
+      <app-font></app-font>
+      <app-font-style></app-font-style>
+      <button mat-icon-button>
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+</ion-header>
+<ion-content >
+
+  <div class="container mat-drawer-container ion-no-padding">
+    <ion-item-divider color="secondary">
+      <ion-label [style.font-size]="fontSize+ 'px'" [style.font-family]="fontFamily" class="ion-text-wrap">Nuestros productos más destacados</ion-label>
+    </ion-item-divider>
+    <ion-row>
+      <ion-col size-lg="4" size-md="4" size-sm="6" size="6" *ngFor="let item of destacados; let i = index;">
+        <mat-card>
+          <div class="ion-text-center">
+            <img mat-card-image src="https://picsum.photos/{{item.size}}/{{item.size}}">
+          </div>
+          <mat-card-title [style.font-size]="fontSize+ 'px'">
+            <div class="ion-text-wrap" >
+              <h3 [style.font-size]="fontSize+ 'px'" [style.font-family]="fontFamily">
+                Producto {{item.nombre}} - COD{{i+1}}   
+              </h3 >         
+              <p [style.font-size]="fontSize+ 'px'" [style.font-family]="fontFamily">
+                Este producto usa tecnologia {{item.tec}}
+              </p>
+            </div>
+          </mat-card-title>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" fill="clear" [style.font-family]="fontFamily">Comprar</button>
+          </mat-card-actions>
+        </mat-card>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

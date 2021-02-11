@@ -1,0 +1,32 @@
+<mat-toolbar color="primary">
+  <span>Identifícate</span>
+</mat-toolbar>
+<ion-content class="ion-padding">
+  <div class="mat-drawer-container">
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="ion-padding">
+    <mat-form-field class="form-input">
+      <mat-label>Usuario</mat-label>
+      <input type="email" matInput formControlName="c_usuario" placeholder="Ej. 12356478">
+      <mat-error 
+      *ngIf="loginForm.controls.c_usuario.errors?.required || loginForm.controls.c_usuario.errors?.pattern"
+      >
+        Por favor ingresa un número de documento válido.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-input">
+      <mat-label>Contraseña</mat-label>
+      <input type="password" matInput formControlName="c_password" placeholder="Ingrese su contraseña">
+      <mat-error 
+      *ngIf="loginForm.controls.c_password.errors?.required"
+      >
+        Por favor ingresa una contraseña válida.
+      </mat-error>
+    </mat-form-field>
+    <div class="ion-text-center">
+      <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Ingresar</button>
+    </div>
+  </form>
+</div>
+
+</ion-content>

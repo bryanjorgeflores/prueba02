@@ -1,0 +1,75 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="toggleMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="ion-text-center">Mi Perfil</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<ion-content class="content">
+  <div class="content mat-drawer-container ion-padding">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="ion-padding">
+      <mat-form-field class="form-input">
+        <mat-label>Tipo de Documento</mat-label>
+        <mat-select formControlName="tipoDoc">
+          <mat-option *ngFor="let doc of documentos" [value]="doc">{{doc}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="profileForm.controls.tipoDoc.errors?.required">
+          Por favor selecciona un tipo de documento.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-input">
+        <mat-label>N° de Documento</mat-label>
+        <input type="text" matInput formControlName="numDoc" placeholder="Ej. 12356478">
+        <mat-error *ngIf="profileForm.controls.numDoc.errors?.required || profileForm.controls.numDoc.errors?.pattern">
+          Por favor ingresa un número de documento válido.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-input">
+        <mat-label>Cod. Cliente</mat-label>
+        <input type="text" matInput formControlName="codCliente" placeholder="Ingrese su contraseña">
+        <mat-error *ngIf="profileForm.controls.codCliente.errors?.required">
+          Por favor ingresa un codigo válido.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-input">
+        <mat-label>Nombres y Apellidos</mat-label>
+        <input type="text" matInput formControlName="nombres" placeholder="Ingrese su contraseña">
+        <mat-error *ngIf="profileForm.controls.nombres.errors?.required">
+          Por favor ingrese un nombre válido.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-input">
+        <mat-label>Fecha de Nacimiento</mat-label>
+        <input type="text" matInput [matDatepicker]="picker" formControlName="fechaNac"
+          placeholder="Ingrese su contraseña">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="profileForm.controls.fechaNac.errors?.required">
+          Por favor ingresa una fecha válida.
+        </mat-error>
+      </mat-form-field>
+      <!-- <div class="ion-text-center">
+      <button mat-raised-button color="primary" type="submit" [disabled]="profileForm.invalid">Ingresar</button>
+    </div> -->
+    </form>
+    <ion-item-divider color="secondary">
+      <ion-label>Tus productos contratados</ion-label>
+    </ion-item-divider>
+    <mat-card *ngFor="let producto of usuario.productosContratados">
+      <mat-card-header>
+        <mat-card-title>{{producto.nombreProducto}}</mat-card-title>
+        <mat-card-subtitle>Id Producto: {{producto.idProducto}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="ion-padding">
+        <p>
+          Este maravilloso producto funciona gracias al uso de la {{producto.tecProducto}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="warn">Reportar Avería</button>
+        <!-- <button mat-button>SHARE</button> -->
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</ion-content>

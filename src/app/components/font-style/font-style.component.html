@@ -1,0 +1,9 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Change Theme Menu">
+  <mat-icon>format_italic</mat-icon>
+</button>
+
+<mat-menu #menu="matMenu">
+  <button *ngFor="let option of options" mat-menu-item (click)="changeFontStyle(option.cssClass)">
+    <span [style.font-family]="option.cssClass">{{option.nombFuente}}</span>
+  </button>
+</mat-menu>
